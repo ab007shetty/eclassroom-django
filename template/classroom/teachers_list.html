@@ -2,69 +2,68 @@
 {% load static %}
 {% block content %}
 
-<div class="student-list">
-<div class="container">
-  <form method='GET' action="{% url 'classroom:teachers_list' %}">
-    <p>Serch Teacher: <input type='search' name='q' placeholder='Search'></p>
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">All Teachers</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>All Teachers</h2>
+            <div class="line-dec"></div>
+        </div>
+
+ <form method='GET' action="{% url 'classroom:teachers_list' %}" >
+     <div class="input-group md-form form-sm form-2 pl-0">
+     <input class="form-control my-0 py-1" type='search' name='q' placeholder='Type Name to Search...' aria-label="Search">
+     <div class="input-group-append">
+    <span class="input-group-text lime lighten-2" id="basic-text1"><i class="fas fa-search text-grey"
+        aria-hidden="true"></i></span>
+  </div>
+</div>
   </form>
+
+
   <div class="row">
   {% for teacher in teachers_list %}
-  <div class="col-6 col-md-4">
-  <div class="student-box">
-    <div class="imgBx">
-      {% if teacher.teacher_profile_pic %}
+  <div class="col-12 col-sm-4 ">
+<br>
+     <div class="hovereffect img-fluid img-thumbnail">
+         {% if teacher.teacher_profile_pic %}
       <img src="{{ teacher.teacher_profile_pic.url }}" alt="">
       {% else %}
       {% if forloop.counter0|divisibleby:"2" %}
-      <img src="{% static 'images/login-avatar.PNG' %}" alt="">
+      <img src="{% static 'images/t1.jpg' %}" alt="">
       {% else %}
-      <img src="{% static 'images/login-avatar-2.PNG' %}" alt="">
+      <img src="{% static 'images/t2.jpg' %}" alt="">
       {% endif %}
       {% endif %}
-    </div>
-    <div class="content">
-      <h3>{{ teacher.name }}</h3>
-      <p><i class="far fa-user"></i> Username: {{ teacher.user.username }}</p>
+
+        <div class="overlay">
+           <h2 class="font-weight-bold">{{ teacher.name }}</h2>
+      <div class="card card-body bg-dark d-flex p-5">
+      <p class=""><i class="far fa-user"></i> Username: {{ teacher.user.username }}</p>
       <p><i class="fas fa-books"></i> Subject Name: {{ teacher.subject_name }}</p>
       <p><i class="far fa-phone"></i> Phone: {{ teacher.phone }}</p>
       <p><i class="far fa-envelope-open-text"></i> Email ID: {{ teacher.email }}</p>
-      <a href="{% url 'classroom:write_message' pk=teacher.pk %}"><p class="add-button">Message</p> </a>
+      <br>
+      <br>
+      <button class="btn btn-info">
+          <a class="nav-link text-white" href="{% url 'classroom:write_message' pk=teacher.pk %}">Message </a>
+      </button>
+
+</div>
+        </div>
     </div>
-  </div>
-  </div>
+
+    </div>
   {% endfor %}
   </div>
+  <br>
+  <br>
 </div>
-</div>
 
-
-
-<!--
-  <div class="jumbotron">
-    <h1>Given below is the list of all Teacher</h1>
-    <h3>Click on "message" to message teacher</h3>
-
-    <form method='GET' action="{% url 'classroom:teachers_list' %}">
-      <input type='search' name='q' placeholder='Search'>
-    </form>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Subject</th>
-          <th scope="col"> </th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for teacher in teachers_list %}
-        <tr>
-          <th>{{ teacher.name }}</th>
-          <th>{{ teacher.subject_name }}</th>
-          <th> <a class="btn btn-primary" href="{% url 'classroom:write_message' pk=teacher.pk %}">Message</a> </th>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
--->
 {% endblock %}

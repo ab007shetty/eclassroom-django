@@ -1,4 +1,8 @@
 # eClassroom
+
+View the site on GitHub at: https://eclassroom.pythonanywhere.com/
+
+
 A Student-Teacher Portal built using HTML, CSS, Python and Django
 
 Class Manager is a Student-Teacher Portal where techers and student can sign up and teachers can add students in their class.

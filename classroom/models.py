@@ -98,6 +98,7 @@ class ClassNotice(models.Model):
         ordering = ['-created_at']
         unique_together = ['teacher','message']
 
+
 class ClassAssignment(models.Model):
     student = models.ManyToManyField(Student,related_name='student_assignment')
     teacher = models.ForeignKey(Teacher,related_name='teacher_assignment',on_delete=models.CASCADE)

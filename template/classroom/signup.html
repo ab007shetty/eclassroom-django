@@ -2,16 +2,36 @@
 {% load static %}
 {% block content %}
 
-  <div class="login-page">
-  <img src="{% static 'images/login-background.PNG' %}" alt="">
-    <div class="signup">
-      <h1>Sign Up</h1>
-      <br>
-      <a href="{% url 'classroom:StudentSignUp' %}"><p>I'm a Student</p> </a>
-      <br>
-      <a href="{% url 'classroom:TeacherSignUp' %}"><p>I'm a Teacher</p> </a>
-    </div>
-    </div>
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">Sign Up</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>Sign Up</h2>
+            <div class="line-dec"></div>
+
+          </div>
+
+                  <div class="row row-content align-text-center text-white ">
+	<div class="col-12 offset-sm-2 col-sm-8 offset-sm-2 ">
+
+                <div class="card card-body  bg-dark">
+
+<div class="col-12  "> <a class="btn btn-success btn-block" href="{% url 'classroom:TeacherSignUp' %}"><p>I'm a Teacher</p>  </a></div>
+<br>				<div class="col-12  "> <a class="btn btn-info btn-block" href="{% url 'classroom:StudentSignUp' %}"><p>I'm a Student</p> </a></div>
+
+
+
+                </div>
+            </div>
+			</div>
+		</div>
+
 
 
 

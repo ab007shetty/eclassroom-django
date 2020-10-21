@@ -1,8 +1,22 @@
 {% extends 'classroom/base.html' %}
 {% block content %}
 
-<div class="container">
-  <div class="jumbotron">
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'classroom:assignment_list' %}">Assignment List</a></li>
+                <li class="breadcrumb-item active">Delete Assignment</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>Delete Assignment</h2>
+            <div class="line-dec"></div>
+
+          </div>
+  <div class="jumbotron bg-dark text-white">
     <h1>Delete {{ object.assignment_name }}?</h1>
 
     <form method='POST'>

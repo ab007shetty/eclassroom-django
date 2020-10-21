@@ -1,22 +1,67 @@
 {% extends 'classroom/base.html' %}
 {% block content %}
 
-<div class="container">
-<div class="jumbotron">
+
+     <div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">Post Notice</li>
+            </ol>
+
+        </div>
+
+          <div class="section-heading">
+            <h2 class="">Write Notice</h2>
+            <div class="line-dec"></div>
+            <span class="text-muted">
+             Notice will be sent to every student in your class.</span>
+
+          </div>
+
+<div class="">
   {% if notice_sent %}
   <h1>Your Notice is added successfully.</h1>
   {% else %}
-  <h1 style="text-align:center;">Write your notice here!</h1>
-  <h3>Notice will be sent to every student in your class.</h3>
-  <hr>
-  <form method="post">
-    {% csrf_token %}
-    {{ notice.as_p }}
-    <input type="submit" class="btn btn-danger" value="Add Notice">
-  </form>
+<br>
+
+              <div class="row row-content align-text-center text-white ">
+	<div class="col-12 col-md-10 offset-md-1">
+             <div class="col-12">
+                <div class="card card-body  bg-dark">
+
+                    {{ notice.non_field_errors }}
+
+						<form  method="post" class =" " >
+						    {% csrf_token %}
+
+                 <div class="form-group row">
+                        <label for="notice" class="col-md-2 col-form-label"> <h6>  {{ notice.message.label_tag }} </h6></label>
+                        <div class="col-md-10">
+
+                            <textarea class="form-control" id="feedback" required name="message" placeholder="Write Your Message..." rows="5"></textarea>
+
+                        </div>
+                    </div>
+
+                 <div class="form-group row ">
+                        <div class="offset-md-2 col-md-10">
+                            <input class="btn btn-primary" type="submit"  value="Send">
+                        </div>
+                    </div>
+                </form>
+
+
+                </div>
+            </div>
+			</div>
+		</div>
+
   {% endif %}
 </div>
 </div>
 
 
+
 {%  endblock %}
+

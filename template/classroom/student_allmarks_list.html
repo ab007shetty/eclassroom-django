@@ -1,12 +1,30 @@
 {% extends "classroom/base.html" %}
 {% block content %}
 
-<div class="container">
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">Marks</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>Marks</h2>
+            <div class="line-dec"></div>
+
+          </div>
+
 <div class="jumbotron">
   {% if student.marks.count == 0  %}
-  <h2>No marks are published yet!</h2>
+  <h2 class="text-dark text-center">No marks are published yet!</h2>
   {% else %}
-  <table class="table">
+   <div class="row row-content">
+            <div class="col-12 col-sm-12">
+
+ <div class="table-responsive">
+                    <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Sr. no.</th>
@@ -31,5 +49,7 @@
   {% endif %}
 </div>
 </div>
-
+</div>
+</div>
+</div>
 {% endblock %}

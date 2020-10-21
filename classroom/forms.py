@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from classroom.models import User,Teacher,Student,StudentMarks,MessageToTeacher,ClassNotice,ClassAssignment,SubmitAssignment
 from django.db import transaction
+from django.forms import ModelForm, Textarea
+
 
 ## User Login Form (Applied in both student and teacher login)
 class UserForm(UserCreationForm):
@@ -13,8 +15,8 @@ class UserForm(UserCreationForm):
                 'password1': forms.PasswordInput(attrs={'class':'answer'}),
                 'password2': forms.PasswordInput(attrs={'class':'answer'}),
                 }
-        
-## Teacher Registration Form 
+
+## Teacher Registration Form
 class TeacherProfileForm(forms.ModelForm):
     class Meta():
         model =  Teacher
@@ -49,32 +51,33 @@ class StudentProfileUpdateForm(forms.ModelForm):
     class Meta():
         model = Student
         fields = ['name','roll_no','email','phone','student_profile_pic']
-        
+
 ## Form for uploading marks and also for updating it.
 class MarksForm(forms.ModelForm):
     class Meta():
         model = StudentMarks
         fields = ['subject_name','marks_obtained','maximum_marks']
 
-## Writing message to teacher        
+## Writing message to teacher
 class MessageForm(forms.ModelForm):
     class Meta():
         model = MessageToTeacher
         fields = ['message']
 
-## Writing notice in the class        
+
+## Writing notice in the class
 class NoticeForm(forms.ModelForm):
     class Meta():
         model = ClassNotice
         fields = ['message']
 
-## Form for uploading or updating assignment (teachers only)       
+## Form for uploading or updating assignment (teachers only)
 class AssignmentForm(forms.ModelForm):
     class Meta():
         model = ClassAssignment
         fields = ['assignment_name','assignment']
 
-## Form for submitting assignment (Students only)        
+## Form for submitting assignment (Students only)
 class SubmitForm(forms.ModelForm):
     class Meta():
         model = SubmitAssignment

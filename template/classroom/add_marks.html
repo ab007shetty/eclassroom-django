@@ -1,16 +1,29 @@
-<!--
-Template for adding marks. This template can only be accessed by teachers and it contains form where teachers can add marks for specific student.
--->
-
 {% extends 'classroom/base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container">
-<div class="jumbotron">
+
+  <div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'classroom:class_student_list' %}">Class Students</a></li>
+                 <li class="breadcrumb-item"><a href="{% url 'classroom:student_marks_list' pk=student.pk  %}">Marks Profile</a></li>
+                <li class="breadcrumb-item active">Add Marks </li>
+            </ol>
+
+        </div>
+
+          <div class="section-heading">
+            <h2 class="">Give Marks to {{ student.name }}</h2>
+            <div class="line-dec"></div>
+
+          </div>
+
+<div class="jumbotron bg-dark text-white">
   {% if marks_given %}
   <h1>Marks added successfully.</h1>
   {% else %}
-  <h1>Give Marks to {{ student.name }}</h1>
+
   <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}

@@ -2,12 +2,28 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<div class="container">
-<div class="jumbotron">
+  <div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'classroom:class_student_list' %}">Class Students</a></li>
+                 <li class="breadcrumb-item"><a href="{{request.META.HTTP_REFERER}}">Marks Profile</a></li>
+                <li class="breadcrumb-item active">Update Marks </li>
+            </ol>
+
+        </div>
+
+          <div class="section-heading">
+            <h2 class="">Update Marks </h2>
+            <div class="line-dec"></div>
+
+          </div>
+
+<div class="jumbotron bg-dark text-white">
   {% if marks_updated %}
   <h2>Marks updated successfully.</h2>
   {% else %}
-  <h1>Update Marks.</h1>
+
   <form  method="post">
     {% csrf_token %}
     {% bootstrap_form form %}

@@ -1,43 +1,108 @@
 {% extends 'classroom/base.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
+	<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                 <li class="breadcrumb-item"><a href="{% url 'classroom:signup' %}">Sign Up</a></li>
+                <li class="breadcrumb-item active">Teacher</li>
+            </ol>
 
+        </div>
 
-<div class="login-page">
-  <img src="{% static 'images/login-background.PNG' %}" alt="">
-  <div class="student-signup-form">
     {% if registered %}
     <h1>Thank you for registering.</h1>
     {% else %}
-    <h1>Sign Up as a teacher.</h1>
-    
+      <div class="section-heading">
+            <h2>Sign up as a Teacher</h2>
+            <div class="line-dec"></div>
+
+          </div>
+             <div class="row row-content align-text-center text-white ">
+	<div class="col-12 col-md-10 offset-sm-1">
+             <div class="col-12">
+                <div class="card card-body  bg-dark">
+
+
 
     <form method="post">
       {% csrf_token %}
 
       {{ teacher_profile_form.non_field_errors }}
 
-      <p><label >{{ teacher_profile_form.name.label_tag }}</label>{{ teacher_profile_form.name }}</p>
-      <p> <label for="">{{ teacher_profile_form.subject_name.label_tag }}</label>  {{ teacher_profile_form.subject_name }}</p>
-      <p> <label for="">{{ teacher_profile_form.phone.label_tag }}</label> {{ teacher_profile_form.phone }}</p>
-      <p> <label for="">{{ teacher_profile_form.email.label_tag }}</label>{{ teacher_profile_form.email }}</p>
+  		<div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Name <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                             <input type="text" class="form-control" required id="name" name="name" placeholder="Full Name">
+                        </div>
+                    </div>
+
+            	<div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Subject Name <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                             <input type="text" class="form-control" required id="name" name="subject_name" placeholder="Subject Name">
+                        </div>
+                    </div>
+
+            	<div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Phone <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                        <input type="tel" class="form-control" required  id="telnum" name="phone" placeholder="Tel. number">
+                        </div>
+                    </div>
+
+            	<div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Email  <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                           <input type="email" class="form-control" required id="emailid" name="email" placeholder="abc@xyz.com">
+                        </div>
+                    </div>
 
 
       {{ user_form.non_field_errors }}
 
-      <p> <label for="">{{ user_form.username.label_tag }}</label>{{ user_form.username }}</p>
-      <p> {{ user_form.username.help_text }}</p>
-      <p> <label for="">{{ user_form.password1.label_tag }}</label>{{ user_form.password1 }}</p>
-      <p> {{ user_form.password1.help_text }} </p>
-      <p> <label for="">{{ user_form.password2.label_tag }}</label>{{ user_form.password2 }}</p>
-      <p> {{ user_form.password2.help_text }} </p>
-      <input type="submit" name="" value="Sign Up">
+
+    <div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Username <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                         <input type="text" class="form-control" required id="name" name="username" placeholder="Username">
+                            <p>  <small> Letters, digits and @/./+/-/_ only.</small></p>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Password <strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                          <input type="password" class="form-control" placeholder="Enter Password" name="password1" required>
+                          <p>  <small> Use minimum 8 Characters with numericals. </small></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class=" col-md-3 col-form-label">Password Confirmation<strong class="text-warning">*</strong></label>
+                        <div class="col-md-9">
+                          <input type="password" class="form-control" placeholder="Enter Password" name="password2" required>
+                           <p>  <small> {{ user_form.password2.help_text }} </small></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ">
+                        <div class="offset-md-3 col-md-4">
+                            <input class="btn btn-block btn-success" type="submit" name="" value="Sign Up">
+                        </div>
+                    </div>
     </form>
-    <a href="{% url 'classroom:login' %}">Already have an account.</a>
-    {% endif %}
+
+<a class="offset-md-3" href="{% url 'classroom:login' %}">Already have an account.</a>
+{% endif %}
+  </div>
+  <br>
+  <br>
+</div>
   </div>
 </div>
-
-
+</div>
 
 {% endblock %}

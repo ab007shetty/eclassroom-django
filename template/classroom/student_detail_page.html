@@ -2,46 +2,58 @@
 {% load static %}
 {% block content %}
 
-<div class="profile">
-  <img src="{% static 'images/profile-background-3.PNG' %}" alt="">
-  <div class="profile-box">
-    {% if student.student_profile_pic %}
-      <img src="{{ student.student_profile_pic.url }}">
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active">Profile</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>My Profile</h2>
+            <div class="line-dec"></div>
+
+          </div>
+<div class="card card-body bg-dark">
+<div class="row">
+
+<div class="col-12 col-sm-4">
+  {% if student.student_profile_pic %}
+      <img class="img-fluid img-thumbnail rounded " style="width:100%; overflow:hidden;" src="{{ student.student_profile_pic.url }}" >
     {% else %}
-      <img src="{% static 'images/login-avatar.PNG' %}" alt="">
+            <img class="img-fluid img-thumbnail rounded " style="width:100%" src="{% static 'images/s_profile.png' %}" alt="">
     {% endif %}
-    <div class="profile-details">
-      <h1>{{ student.name }}</h1>
-      <br>
-      <p><i class="far fa-user"></i> Username: {{ student.user.username }}</p>
-      <p><i class="fal fa-user-tag"></i> Roll No.: {{ student.roll_no }}</p>
-      <p><i class="far fa-phone"></i> Phone: {{ student.phone }}</p>
-      <p><i class="far fa-envelope-open-text"></i> Email ID: {{ student.email }}</p>
-      <a href="{% url 'classroom:student_update' pk=user.pk %}"> <p class="edit-button">Edit Profile</p> </a>
-    </div>
-  </div>
 </div>
 
-<!--
-<div class="row">
-  <div class="col-md-3">
-    {% if student.student_profile_pic %}
-      <img src="{{ student.student_profile_pic.url }}">
-    {% else %}
-      <img src="" alt="">
-    {% endif %}
-  </div>
-  <div class="col-md-9">
-    <h1>{{ student.user.username }}</h1>
+<div class="col-12 col-sm-8 text-justify text-white text-center">
+    <div class="card card-body bg-info">
+ <h1>{{ student.name }}</h1>
+ <br>
+          <p><i class="far fa-user"></i> Username: {{ student.user.username }}</p>
+      <p><i class="fal fa-user-tag"></i> Roll No: {{ student.roll_no }}</p>
+      <p><i class="far fa-phone"></i> Phone: {{ student.phone }}</p>
+      <p><i class="far fa-envelope-open-text"></i> Email ID: {{ student.email }}</p>
     <br>
-    <p>Name: {{ student.name }}</p>
-    <p>Roll No.: {{ student.roll_no }}</p>
-    <p>Email Id: {{ student.email }}</p>
-    <p>Phone: {{ student.phone }}</p>
-    <br>
-    <p> <a class="btn btn-primary" href="{% url 'classroom:student_update' pk=user.pk %}">Edit profile</a> </p>
-  </div>
+
+        <div class="row">
+<div class="col-5 offset-sm-2 col-sm-4 offset-sm-2">
+       <p><a class="btn btn-primary" href="{% url 'classroom:student_update' pk=user.pk %}">Edit profile</a></p>
+         </div>
+
+        <div class="col-7 col-sm-4 ">
+              <p><a class="btn btn-danger" href="{% url 'classroom:change_password' %}">Change Password</a></p>
+
+              </div>
 </div>
--->
+
+
+</div>
+</div>
+</div>
+</div>
+<br>
+</div>
 
 {% endblock %}

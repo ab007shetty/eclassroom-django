@@ -2,12 +2,25 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<div class="container">
-<div class="jumbotron">
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                 <li class="breadcrumb-item"><a href="{% url 'classroom:student_detail' pk=user.pk %}">Profile</a></li>
+                <li class="breadcrumb-item active">Update Profile</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>Update Profile</h2>
+            <div class="line-dec"></div>
+
+          </div>
+<div class="jumbotron bg-dark text-white">
   {% if profile_updated %}
-  <h1>Your profile is updated successfully.</h1>
+  <h1 class="text-center">Your profile is updated successfully.</h1>
   {% else %}
-  <h1>Update Profile</h1>
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}

@@ -1,8 +1,23 @@
 {% extends 'classroom/base.html' %}
 {% block content %}
-<div class="container">
-<div class="jumbotron">
-  <h1>Update Assignment</h1>
+<div class="container ">
+		<div class="row">
+            <ol class="col-12 breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'classroom:assignment_list' %}">Assignment List</a></li>
+                <li class="breadcrumb-item active">Update Assignment</li>
+            </ol>
+
+        </div>
+
+       <div class="section-heading">
+            <h2>Update Assignment</h2>
+            <div class="line-dec"></div>
+
+          </div>
+
+<div class="jumbotron bg-dark text-white">
+
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ form.as_p }}

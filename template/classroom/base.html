@@ -2,80 +2,225 @@
 {% load static %}
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Student manger</title>
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" type="image/jpg" href="{% static 'images/logo.png' %}" />
+    <title>E-Classroom</title>
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css "/>
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/searchbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/newbase.css' %}">
+
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Source+Sans+Pro&display=swap" rel="stylesheet">
 
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-  </head>
-  <body>
+</head>
 
-    <nav>
-      <div class="toggle">
-        <a href="{% url 'home' %}">Class Manager</a>
-        <i class="fa fa-bars menu"></i>
-      </div>
-    </nav>
-    <div class="sidebar">
-      <ul>
+<body class="bg " style="background-image: url({% static 'images/bg.jpg' %}); " >
+
+    <br>
+    <br>
+    <br>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+           <div class="container offset-lg-2">
+                  <a class="navbar-brand" href="{% url 'home' %}"><h2><span class="badge badge-danger">E-Classroom</span></h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class=" collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto bg-dark offset-lg-2" >
+
         {% if user.is_authenticated %}
         {% if user.is_teacher%}
-          <li> <a href="{% url 'classroom:upload_assignment' %}">Upload Assignment</a> </li>
-          <li> <a href="{% url 'classroom:assignment_list' %}">Assignment list</a> </li>
-          <li> <a href="{% url 'classroom:submit_list' %}">View Submissions</a> </li>
-          <li> <a href="{% url 'classroom:students_list' %}">All Students List</a> </li>
-          <li> <a href="{% url 'classroom:class_student_list'%}">Class Students List</a> </li>
-          <li> <a href="{% url 'classroom:write_notice' %}">Write Notice</a> </li>
-          <li> <a href="{% url 'classroom:messages_list' pk=user.pk %}">Inbox</a> </li>
-          <li> <a href="{% url 'classroom:teacher_detail' pk=user.pk %}">Profile</a> </li>
-          {% else %}
-          <li> <a href="{% url 'classroom:all_marks_list' pk=user.pk %}">Marks</a> </li>
-          <li> <a href="{% url 'classroom:class_notice' pk=user.pk %}">Class Notice</a> </li>
-          <li> <a href="{% url 'classroom:class_assignment' %}">Class Assignment</a> </li>
-          <li> <a href="{% url 'classroom:teachers_list' %}">Teacher list</a> </li>
-          <li> <a href="{% url 'classroom:student_detail' pk=user.pk %}">Profile</a> </li>
-          {% endif %}
-          <li> <a href="{% url 'classroom:change_password' %}">Change Password</a> </li>
-          <li> <a href="{% url 'classroom:logout' %}">Logout</a> </li>
-          {% else %}
-          <li><a class="head-left" href="{% url 'classroom:login' %}">Login</a></li>
-          <li><a class="head-left" href="{% url 'classroom:signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
-    </div>
 
-      {% block content %}
-      {% endblock %}
+          <li class="nav-item active">
+         <a class="nav-link" href="{% url 'classroom:teacher_detail' pk=user.pk %}"><i class="fa fa-user-circle"></i> Profile</a>
+          </li>
 
 
-      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function(){
-          $('.menu').click(function(){
-            $('ul').toggleClass('active');
-          })
-        })
-      </script>
+         <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-book"></i> Assignments</a>
+            <div class="dropdown-menu text-center" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="{% url 'classroom:upload_assignment' %}">Upload Assignment</a>
+          <a class="dropdown-item" href="{% url 'classroom:assignment_list' %}">Assignment list</a>
+           <a class="dropdown-item" href="{% url 'classroom:submit_list' %}">View Submissions</a>
+            </div
+          </li>
 
-  </body>
+          <li class="nav-item dropdown active">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-graduation-cap"></i> Students</a>
+            <div class="dropdown-menu text-center" aria-labelledby="dropdown01">
+                  <a class="dropdown-item" href="{% url 'classroom:students_list' %}">All Students List</a>
+          <a class="dropdown-item" href="{% url 'classroom:class_student_list'%}">Class Students List</a>
+            </div>
+          </li>
+           <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:write_notice' %}"><i class="fa fa-envelope"></i> Post Notice</a>
+          </li>
+
+           <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:messages_list' pk=user.pk %}"><i class="fa fa-inbox"></i> Inbox</a>
+          </li>
+
+    {% else %}
+
+            <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:student_detail' pk=user.pk %}"><i class="fa fa-user-circle"></i> Profile</a>
+          </li>
+
+           <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:all_marks_list' pk=user.pk %}"><i class="fa fa-plus"></i> Marks</a>
+          </li>
+
+            <li class="nav-item active">
+          <a class="nav-link" href="{% url 'classroom:class_assignment' %}"><i class="fa fa-book"></i> Class Assignment</a>
+          </li>
+
+           <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:class_notice' pk=user.pk %}"><i class="fa fa-envelope-open"></i> Class Notice</a>
+          </li>
+
+            <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:teachers_list' %}"><i class="fa fa-users"></i> Teacher list</a>
+          </li>
+     {% endif %}
+
+           <li class="nav-item active">
+           <a class="nav-link" href="{% url 'classroom:logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+          </li>
+     {% else %}
+
+            <li class="offset-lg-7 nav-item active ">
+
+          <span class="navbar-text">
+                    <a id="loginButton" role="button">
+                    <span class="fa fa-sign-in"></span> Login</a>
+                </span>
+          </li>
+
+          <li class="nav-item active">
+          <a class="nav-link" href="{% url 'classroom:signup' %}"><i class="fa fa-user-plus"></i> Sign Up</a>
+          </li>
+     {% endif %}
+        </ul>
+</div>
+      </div>
+    </nav>
+
+	<!-- Login Modal -->
+	<div id="loginModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg" role="content">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title text-center">Login </h1>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+			          <div class="card-group ">
+                    <div class="card bg-dark p-4">
+                        <div class="card-body  text-white">
+                            <form method="post" action="{% url 'classroom:login' %}">
+                                {% csrf_token %}
+                                <h2>Login</h2>
+                                <p class="text-muted">Sign In to your account</p>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text"
+                                       class="form-control"
+                                       name="username"
+                                       placeholder="Enter Username"
+                                       id="name"
+									   required
+                                       >
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
+                                    </div>
+                                    <input type="password"
+                                       class="form-control"
+                                       name="password"
+                                       placeholder="Enter Password"
+                                       id="{{ login_form.password.id_for_label }}"
+                                       >
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-success px-4">Login</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+
+                    <a  href=" https://wa.me/919448936489?text=Please%20Change%20My%20Password." target="blank">Forgot Password?</a>
+
+
+                                    </div>
+                                    {% if login_form.errors %}
+                                    <div class="alert alert-danger col-12 mt-3" role="alert">
+                                        Wrong username or password
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-info py-5">
+                        <div class="card-body text-center">
+                            <div>
+                                <h2>Sign up</h2>
+                                <p class="mt-4">Register now, it's free.</p>
+                                <a href="{% url 'classroom:signup' %}" class="btn btn-primary active mt-3">Register Now!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<div class="text-white">
+{% block content %} {% endblock %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+	<script src="https://use.fontawesome.com/ee1c3da296.js"></script>
+	    <script>
+    $(document).ready(function(){
+
+	$('#loginButton').click(function(){
+		$('#loginModal').modal('show');
+	});
+});
+    </script>
+	</body>
 </html>
