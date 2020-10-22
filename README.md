@@ -1,6 +1,6 @@
 # eClassroom
 
-View the site on GitHub at: https://eclassroom.pythonanywhere.com/
+## View the site on GitHub at: https://eclassroom.pythonanywhere.com/
 
 
 A Student-Teacher Portal built using HTML, CSS, Python and Django
