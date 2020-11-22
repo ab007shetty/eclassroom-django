@@ -17,7 +17,7 @@ from classroom import models
 from classroom.models import StudentsInClass,StudentMarks,ClassAssignment,SubmitAssignment,Student,Teacher
 from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
-
+from django.core.mail import send_mail
 
 # For Teacher Sign Up
 def TeacherSignUp(request):
@@ -451,4 +451,22 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form':form}
         return render(request,'classroom/change_password.html',args)
+
+
+def index(request):
+
+	if request.method == 'POST':
+		name = request.POST['name']
+		email = request.POST['email']
+		subject = request.POST['subject']
+		message = request.POST['message']
+
+		message = name + " with the email, " + email + ", sent the following message:\n\n" + message;
+
+		send_mail(subject,
+		 message,
+		 'anirudha.17me010@sode-edu.in',
+		 ['ab8055shetty@gmail.com'],
+		 fail_silently=False)
+	return render(request, 'classroom/index.html')
 
