@@ -172,7 +172,7 @@ ul li a
 
   /* Full height */
   height: 100%;
-
+	width:100%;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
